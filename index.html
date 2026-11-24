@@ -1,65 +1,1399 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>English Adventure – Cẩm Tiên</title>
-<style>
-:root{--navy:#062b4f;--blue:#0b6fae;--sky:#eef8ff;--white:#fff;--ink:#17364b;--muted:#60788a;--yellow:#ffd65a;--green:#1ba76b;--red:#e85d66;--line:#dcecf5;--shadow:0 14px 36px rgba(6,43,79,.12)}
-*{box-sizing:border-box} html{scroll-behavior:auto} body{margin:0;background:var(--sky);color:var(--ink);font-family:Arial,"Helvetica Neue","Noto Sans",Tahoma,sans-serif;line-height:1.5}
-button{font:inherit}.app{max-width:1100px;margin:auto;min-height:100vh}.top{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;z-index:20}.brand{font-weight:900;font-size:clamp(18px,4vw,27px)}.brand small{display:block;font-size:11px;color:#bce8ff;letter-spacing:.3px}.homeBtn{border:1px solid #ffffff44;background:#ffffff16;color:#fff;border-radius:12px;padding:9px 12px;font-weight:800;cursor:pointer}
-.page{display:none}.page.active{display:block}.hero{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:42px 20px 36px}.hello{display:inline-block;background:#ffffff18;border:1px solid #ffffff2b;padding:8px 13px;border-radius:999px;font-weight:800}.hero h1{font-size:clamp(34px,8vw,58px);line-height:1.05;margin:14px 0 8px}.hero p{max-width:720px;color:#e2f4ff;font-size:17px}
-.unitGrid{padding:22px 16px 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}.unitCard{border:0;background:#fff;text-align:left;padding:20px;border-radius:24px;box-shadow:var(--shadow);cursor:pointer;min-height:180px;transition:transform .18s ease,box-shadow .18s ease}.unitCard:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(6,43,79,.18)}.unitCard:active{transform:scale(.99)}.badge{display:inline-block;padding:5px 10px;border-radius:999px;background:#e5f5ff;color:#0870aa;font-weight:900;font-size:13px}.unitCard h2{margin:14px 0 5px;color:var(--navy);font-size:28px}.unitCard p{color:var(--muted);margin:0}.go{display:block;margin-top:16px;color:var(--blue);font-weight:900}
-.lessonHead{padding:28px 16px;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}.lessonHead h1{margin:8px 0;font-size:clamp(30px,7vw,46px)}.lessonHead p{margin:0;color:#dff3ff}.lessonNav{display:flex;gap:8px;overflow:auto;padding:12px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:63px;z-index:15}.tab{white-space:nowrap;border:0;border-radius:999px;padding:10px 14px;background:#eef6fb;color:#3e6278;font-weight:900;cursor:pointer}.tab.active{background:var(--navy);color:#fff}.content{padding:22px 16px 50px}.panel{display:none}.panel.active{display:block}.title{font-size:30px;color:var(--navy);margin:0 0 5px}.intro{color:var(--muted);margin-top:0}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin:14px 0;box-shadow:0 7px 22px rgba(6,43,79,.05)}.phrase{border-left:5px solid var(--blue)}.en{font-size:22px;font-weight:900;color:var(--navy)}.vi{color:var(--muted);margin-top:4px}.speak{margin-top:10px;border:0;border-radius:12px;padding:9px 12px;background:#e2f5ff;color:#076ea7;font-weight:900;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.word{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px}.extra{background:#fff8dc;border-color:#f2d77a}.alphabetGrid{display:grid;grid-template-columns:repeat(13,1fr);gap:8px}.letter{border:1px solid #cfe8f6;background:#f2faff;border-radius:12px;padding:10px 4px;font-weight:900;font-size:20px;cursor:pointer}
-.exercise h3{margin:0 0 8px;color:var(--navy)}.question{padding:12px 0;border-bottom:1px dashed #d7e5ed}.options,.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}.opt,.chip{border:2px solid #dceaf1;background:#f5fafc;border-radius:12px;padding:9px 11px;font-weight:800;cursor:pointer}.selected{border-color:var(--blue);background:#dff4ff}.correct{border-color:var(--green)!important;background:#e5faef!important}.wrong{border-color:var(--red)!important;background:#ffe8ea!important}.checkBtn{margin-top:12px;border:0;border-radius:12px;padding:10px 14px;background:var(--navy);color:#fff;font-weight:900;cursor:pointer}.blank{display:inline-block;min-width:85px;border-bottom:3px solid var(--blue);text-align:center;color:var(--blue);font-weight:900}.feedback{font-weight:900;margin-top:10px}.matchGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.matchBtn{width:100%;text-align:left;margin:4px 0;border:2px solid #dceaf1;background:#f5fafc;border-radius:12px;padding:10px;font-weight:800;cursor:pointer}
-.challengeLaunch{background:linear-gradient(135deg,var(--navy),#0d79b8);color:#fff}.challengeLaunch h3{color:#fff}.challengeLaunch p{color:#def2ff}.challengeLaunch .checkBtn{background:var(--yellow);color:#463600}
-.testPage{min-height:100vh;background:linear-gradient(180deg,#062b4f 0,#0b6fae 34%,#eef8ff 34%);padding:18px 14px 35px}.testTop{max-width:760px;margin:auto;color:#fff;display:flex;justify-content:space-between;gap:10px;align-items:center}.timer{font-size:24px;font-weight:900;background:#ffffff18;border:1px solid #ffffff38;padding:8px 14px;border-radius:14px}.testCard{max-width:760px;margin:28px auto 0;background:#fff;border-radius:26px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.2)}.progressBar{height:10px;background:#e4eef4;border-radius:99px;overflow:hidden;margin:12px 0 20px}.progressBar i{display:block;height:100%;width:0;background:var(--blue);transition:width .25s linear}.testQuestion{font-size:clamp(22px,5vw,34px);font-weight:900;color:var(--navy);margin:20px 0}.answerOpt{display:block;width:100%;text-align:left;margin:10px 0;border:2px solid #dceaf1;background:#f8fbfd;border-radius:15px;padding:14px;font-weight:800;cursor:pointer}.answerOpt:hover{border-color:#80c7ea}.testNote{text-align:center;color:var(--muted);font-weight:700}.hidden{display:none!important}
-.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:11px 15px;border-radius:999px;font-weight:800;z-index:100;display:none}.toast.show{display:block}@media(max-width:600px){.brand small{font-size:9px}.unitGrid{grid-template-columns:1fr;padding:16px}.content{padding:16px 12px}.grid{grid-template-columns:1fr 1fr}.alphabetGrid{grid-template-columns:repeat(6,1fr)}.matchGrid{grid-template-columns:1fr}.lessonNav{top:58px}.top{padding:9px 12px}.homeBtn{font-size:12px}.testCard{padding:18px}.testTop{font-size:14px}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Grade 3 - Global Success (Unit 1 - 6)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Nunito & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Tone.js for cheerful sound effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <!-- Canvas Confetti for celebrations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            50: '#f0f4fa',
+                            100: '#dbe4f3',
+                            200: '#b8cbe7',
+                            300: '#8ba9d7',
+                            400: '#5d83c3',
+                            500: '#3c62ab',
+                            600: '#2b4a8c',
+                            700: '#1e3a8a', // Primary Navy
+                            800: '#172554', // Deep Navy
+                            900: '#0f172a', // Darkest Navy
+                            950: '#080d1a',
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2.5s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pop': 'pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                        'shake': 'shake 0.4s cubic-bezier(.36,.07,.19,.97) both',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-6px)' },
+                        },
+                        pop: {
+                            '0%': { transform: 'scale(0.85)', opacity: '0.5' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        shake: {
+                            '10%, 90%': { transform: 'translate3d(-2px, 0, 0)' },
+                            '20%, 80%': { transform: 'translate3d(4px, 0, 0)' },
+                            '30%, 50%, 70%': { transform: 'translate3d(-6px, 0, 0)' },
+                            '40%, 60%': { transform: 'translate3d(6px, 0, 0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top left, #1e3a8a 0%, #172554 45%, #0f172a 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism panels */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 0 8px 32px rgba(8, 13, 26, 0.35);
+        }
+
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(8, 13, 26, 0.4);
+            color: #0f172a;
+        }
+
+        .letter-tile {
+            transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+            user-select: none;
+        }
+
+        .letter-tile:active {
+            transform: scale(0.92);
+        }
+
+        /* Custom subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(139, 169, 215, 0.4);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 169, 215, 0.7);
+        }
+    </style>
 </head>
-<body>
-<div class="app">
-<header class="top"><div class="brand">🌟 English Adventure<small>Dành riêng cho Cẩm Tiên💙</small></div><button class="homeBtn" onclick="goHome()">⌂ Trang chủ</button></header>
-<section id="home" class="page active"><div class="hero"><span class="hello">👧 Chào Cẩm Tiên!</span><h1>Học tiếng Anh từng bước 💙</h1><p>Chọn một bài để bắt đầu. Mỗi bài sẽ mở ra một màn hình học riêng với từ vựng, mẫu câu, bài luyện tập và thử thách.</p></div><div id="unitGrid" class="unitGrid"></div></section>
-<section id="lesson" class="page"><div class="lessonHead"><span id="unitBadge" class="badge"></span><h1 id="unitTitle"></h1><p id="unitDesc"></p></div><nav class="lessonNav"><button class="tab active" data-tab="learn">📖 Học bài</button><button class="tab" data-tab="vocab">🔊 Từ vựng</button><button class="tab" data-tab="practice">✍️ Bài luyện</button><button class="tab" data-tab="review">🏆 Ra thử thách</button></nav><main class="content"><section id="learn" class="panel active"></section><section id="vocab" class="panel"></section><section id="practice" class="panel"></section><section id="review" class="panel"></section></main></section>
-<section id="test" class="page"></section>
-</div><div id="toast" class="toast"></div>
-<script>
-const U={
-starter:{name:'Starter',title:'Starter – Alphabet & Numbers',desc:'Làm quen với bảng chữ cái tiếng Anh (ABCs) và các số từ 1 đến 10.',words:[['one','một'],['two','hai'],['three','ba'],['four','bốn'],['five','năm'],['six','sáu'],['seven','bảy'],['eight','tám'],['nine','chín'],['ten','mười']],phrases:[['Count from one to ten.','Đếm từ một đến mười.'],['What number is it?','Đó là số mấy?'],['This is the letter A.','Đây là chữ cái A.']],extra:[['Let’s count together!','Chúng mình cùng đếm nhé!'],['I can say the alphabet.','Con có thể đọc bảng chữ cái.']]},
-u1:{name:'Unit 1',title:'Hello',desc:'Chào hỏi, hỏi thăm và tạm biệt.',words:[['hello','xin chào'],['hi','chào'],["I'm",'tôi là'],['fine','khỏe / tốt'],['thank you','cảm ơn'],['goodbye','tạm biệt'],['bye','tạm biệt']],phrases:[['Hello. I’m Ben.','Xin chào. Mình là Ben.'],['Hi. I’m Mai.','Chào. Mình là Mai.'],['How are you?','Bạn có khỏe không?'],['Fine, thank you.','Mình khỏe, cảm ơn.'],['Goodbye.','Tạm biệt.']],extra:[['Hello, Cẩm Tiên!','Xin chào, Cẩm Tiên!'],['I’m happy today.','Hôm nay mình vui.'],['See you again!','Hẹn gặp lại!']]},
-u2:{name:'Unit 2',title:'Our names',desc:'Hỏi và trả lời về tên và tuổi.',words:[['my name','tên của tôi'],['your','của bạn'],['what','cái gì'],['how','như thế nào'],['old','tuổi'],['years old','tuổi']],phrases:[["What’s your name?",'Bạn tên là gì?'],["My name’s Mary.",'Tên của mình là Mary.'],['How old are you?','Bạn bao nhiêu tuổi?'],["I’m eight years old.",'Mình tám tuổi.']],extra:[["My name is Cẩm Tiên.",'Tên của mình là Cẩm Tiên.'],['Nice to meet you!','Rất vui được gặp bạn!'],['I am nine years old.','Mình chín tuổi.']]},
-u3:{name:'Unit 3',title:'Our friends',desc:'Giới thiệu bạn bè và nhận biết this / that.',words:[['friend','bạn'],['this','đây'],['that','kia'],['teacher','giáo viên'],['yes','vâng / có'],['no','không']],phrases:[['This is Mary.','Đây là Mary.'],['That’s Mr Long.','Kia là thầy Long.'],['Is this Nam?','Đây có phải Nam không?'],['Yes, it is.','Đúng, phải.'],['No, it isn’t.','Không, không phải.']],extra:[['This is my friend.','Đây là bạn của mình.'],['She is my friend.','Cô ấy là bạn của mình.'],['He is my friend.','Bạn ấy là bạn của mình.']]},
-u4:{name:'Unit 4',title:'Our bodies',desc:'Học các bộ phận cơ thể và cách chỉ vào chúng.',words:[['head','đầu'],['hand','bàn tay'],['arm','cánh tay'],['leg','chân'],['foot','bàn chân'],['eye','mắt'],['nose','mũi'],['mouth','miệng']],phrases:[['This is my head.','Đây là đầu của mình.'],['These are my hands.','Đây là hai bàn tay của mình.'],['Touch your nose.','Chạm vào mũi của bạn.'],['Point to your eyes.','Chỉ vào đôi mắt của bạn.']],extra:[['I have two eyes.','Mình có hai mắt.'],['I can clap my hands.','Mình có thể vỗ tay.'],['Touch your head!','Chạm vào đầu nhé!']]}
-};
-let current='starter', answers={}, matchLeft=null, testQuestions=[], testIndex=0, testScore=0, testTimer=null, seconds=40;
-const $=id=>document.getElementById(id);function toast(t){const x=$('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1800)}
-function renderHome(){unitGrid.innerHTML=Object.entries(U).map(([id,u])=>`<button class="unitCard" onclick="openUnit('${id}')"><span class="badge">${u.name}</span><h2>${u.title}</h2><p>${u.desc}</p><span class="go">Bắt đầu học →</span></button>`).join('')}
-function openUnit(id){current=id;answers={};matchLeft=null;$('home').classList.remove('active');$('test').classList.remove('active');$('lesson').classList.add('active');const u=U[id];$('unitBadge').textContent=u.name;$('unitTitle').textContent=u.title;$('unitDesc').textContent=u.desc;renderLesson();setTab('learn');window.scrollTo(0,0)}
-function goHome(){clearInterval(testTimer);$('lesson').classList.remove('active');$('test').classList.remove('active');$('home').classList.add('active');window.scrollTo(0,0)}
-function setTab(tab){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===tab));window.scrollTo(0,0)}
-document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
-function speak(text){if(!('speechSynthesis' in window)){toast('Trình duyệt này chưa hỗ trợ giọng đọc.');return}window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.75;u.pitch=1;const voices=speechSynthesis.getVoices();const v=voices.find(x=>/^en-US/i.test(x.lang))||voices.find(x=>/^en/i.test(x.lang));if(v)u.voice=v;u.onerror=()=>toast('Chưa phát được audio. Hãy thử bật âm lượng và mở bằng Chrome/Safari.');speechSynthesis.speak(u)}
-const alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');function phrase(p){return `<article class="card phrase"><div class="en">${p[0]}</div><div class="vi">🇻🇳 ${p[1]}</div><button class="speak" onclick='speak(${JSON.stringify(p[0])})'>🔊 Nghe câu</button></article>`}
-function renderLesson(){const u=U[current];const alpha=current==='starter'?`<article class="card"><h3>🔤 Bảng chữ cái tiếng Anh A–Z</h3><p class="intro">Bấm vào từng chữ để nghe.</p><div class="alphabetGrid">${alphabet.map(l=>`<button class="letter" onclick="speak('${l}')">${l}</button>`).join('')}</div><button class="speak" onclick="speak('A B C D E F G H I J K L M N O P Q R S T U V W X Y Z')">🔊 Nghe toàn bộ A–Z</button></article>`:'';
-$('learn').innerHTML=`<h2 class="title">📖 Mẫu câu</h2><p class="intro">Nghe – đọc theo – hiểu nghĩa. Câu mở rộng được để riêng để Cẩm Tiên dễ phân biệt.</p>${u.phrases.map(phrase).join('')}${alpha}<article class="card extra"><h3>✨ Câu mở rộng – học thêm</h3><p>Những câu dưới đây được bổ sung để bé tiếp xúc thêm với tiếng Anh.</p>${u.extra.map(phrase).join('')}</article>`;
-$('vocab').innerHTML=`<h2 class="title">🔊 Từ vựng</h2><p class="intro">Bấm vào nút nghe và đọc theo.</p><div class="grid">${u.words.map(w=>`<article class="word"><div class="en">${w[0]}</div><div class="vi">🇻🇳 ${w[1]}</div><button class="speak" onclick='speak(${JSON.stringify(w[0])})'>🔊 Nghe</button></article>`).join('')}</div>`;
-$('practice').innerHTML=practiceHTML(u);$('review').innerHTML=reviewHTML(u)}
-function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
-function makeQs(u,n=12){let pool=[];u.words.forEach(w=>pool.push({q:`Từ “${w[0]}” nghĩa là gì?`,opts:shuffle([w[1],...shuffle(u.words.filter(x=>x[0]!==w[0]).map(x=>x[1])).slice(0,3)]),ans:w[1]}));[...u.phrases,...u.extra].forEach(p=>pool.push({q:`Câu nào có nghĩa: “${p[1]}”?`,opts:shuffle([p[0],...shuffle([...u.phrases,...u.extra].filter(x=>x[0]!==p[0]).map(x=>x[0])).slice(0,3)]),ans:p[0]}));return shuffle(pool).slice(0,Math.min(n,pool.length))}
-function practiceHTML(u){const qs=makeQs(u,12);const blanks=shuffle([...u.phrases,...u.extra]).slice(0,Math.min(6,u.phrases.length+u.extra.length)).map(p=>{const ws=p[0].replace(/[?!.,]/g,'').split(' ');const i=Math.floor(ws.length/2);return{before:ws.slice(0,i).join(' '),ans:ws[i],after:ws.slice(i+1).join(' ')}});return `<h2 class="title">✍️ Bài luyện</h2><p class="intro">Có nhiều dạng bài để bé không bị nhàm chán.</p><article class="card exercise"><h3>1. Chọn đáp án đúng (${qs.length} câu)</h3>${qs.map((q,i)=>`<div class="question"><b>${i+1}. ${q.q}</b><div class="options">${q.opts.map(o=>`<button class="opt" data-group="mc${i}" onclick='pick(this,"mc${i}",${JSON.stringify(o)})'>${o}</button>`).join('')}</div></div>`).join('')}<button class="checkBtn" onclick='checkMC(${JSON.stringify(qs)})'>Kiểm tra ✓</button><div id="mcFeed" class="feedback"></div></article><article class="card exercise"><h3>2. Bấm từ để điền chỗ trống</h3>${blanks.map((b,i)=>`<div class="question"><b>${i+1}. ${b.before} <span id="bl${i}" class="blank">?</span> ${b.after}</b></div>`).join('')}<div class="chips">${shuffle(blanks.map(x=>x.ans)).map(w=>`<button class="chip" onclick='fillBlank(${JSON.stringify(blanks)},${JSON.stringify(w)})'>${w}</button>`).join('')}</div><button class="checkBtn" onclick='checkBlank(${JSON.stringify(blanks)})'>Kiểm tra ✓</button><div id="blFeed" class="feedback"></div></article><article class="card exercise"><h3>3. Nối từ với nghĩa</h3><div class="matchGrid"><div>${u.words.slice(0,6).map((w,i)=>`<button id="L${i}" class="matchBtn" onclick="pickLeft(${i})">${w[0]}</button>`).join('')}</div><div>${shuffle(u.words.slice(0,6).map((w,i)=>({i,t:w[1]}))).map(x=>`<button class="matchBtn" onclick="pickRight(${x.i},this)">${x.t}</button>`).join('')}</div></div><div id="matchFeed" class="feedback"></div></article>`}
-function pick(el,key,val){document.querySelectorAll(`[data-group="${key}"]`).forEach(x=>x.classList.remove('selected'));el.classList.add('selected');answers[key]=val}
-function checkMC(qs){let n=0;qs.forEach((q,i)=>n+=answers['mc'+i]===q.ans);$('mcFeed').textContent=`🎉 Cẩm Tiên đúng ${n}/${qs.length} câu!`}
-function fillBlank(blanks,w){for(let i=0;i<blanks.length;i++){if(!answers['bl'+i]){answers['bl'+i]=w;$('bl'+i).textContent=w;return}}toast('Con đã điền đủ rồi!')}
-function checkBlank(blanks){let n=0;blanks.forEach((b,i)=>n+=answers['bl'+i]===b.ans);$('blFeed').textContent=`✨ Đúng ${n}/${blanks.length} chỗ!`}
-function pickLeft(i){matchLeft=i;document.querySelectorAll('[id^="L"]').forEach(x=>x.classList.remove('selected'));$('L'+i).classList.add('selected')}
-function pickRight(i,el){if(matchLeft===null){$('matchFeed').textContent='👈 Hãy chọn từ tiếng Anh trước nhé!';return}const ok=i===matchLeft;$('L'+matchLeft).classList.add(ok?'correct':'wrong');el.classList.add(ok?'correct':'wrong');$('matchFeed').textContent=ok?'🎉 Chính xác!':'😊 Chưa đúng, thử tiếp nhé!';matchLeft=null}
-function reviewHTML(u){return `<h2 class="title">🏆 Ra thử thách</h2><p class="intro">Khi bắt đầu, Cẩm Tiên sẽ vào một màn hình kiểm tra riêng. Mỗi lần chỉ có 1 câu và tối đa 40 giây để suy nghĩ.</p><article class="card challengeLaunch"><h3>⚡ THỬ THÁCH 40 GIÂY / CÂU</h3><p>⏱️ Hết 40 giây hệ thống tự chuyển sang câu tiếp theo.<br>🎯 Mỗi lần làm có câu hỏi được trộn lại.<br>🏆 Cuối bài có kết quả.</p><button class="checkBtn" onclick="startChallenge()">🚀 RA THỬ THÁCH!</button></article>`}
-function startChallenge(){const u=U[current];testQuestions=makeQs(u,Math.min(15,u.words.length+u.phrases.length+u.extra.length));testIndex=0;testScore=0;$('lesson').classList.remove('active');$('home').classList.remove('active');$('test').classList.add('active');renderTest();window.scrollTo(0,0)}
-function renderTest(){clearInterval(testTimer);seconds=40;const q=testQuestions[testIndex];$('test').innerHTML=`<div class="testPage"><div class="testTop"><div><b>🏆 Thử thách của Cẩm Tiên</b><div>Câu ${testIndex+1}/${testQuestions.length}</div></div><div id="timer" class="timer">⏱️ 40</div></div><div class="testCard"><div class="progressBar"><i style="width:${(testIndex/testQuestions.length)*100}%"></i></div><div class="testNote">Chọn một đáp án trước khi hết giờ nhé 💙</div><div class="testQuestion">${q.q}</div><div>${q.opts.map(o=>`<button class="answerOpt" onclick='answerTest(${JSON.stringify(o)})'>${o}</button>`).join('')}</div></div></div>`;testTimer=setInterval(()=>{seconds--;const t=$('timer');if(t)t.textContent='⏱️ '+seconds;if(seconds<=0){clearInterval(testTimer);nextTest(false)}},1000)}
-function answerTest(val){clearInterval(testTimer);nextTest(val===testQuestions[testIndex].ans)}
-function nextTest(ok){if(ok)testScore++;testIndex++;if(testIndex>=testQuestions.length){finishTest()}else{renderTest()}}
-function finishTest(){clearInterval(testTimer);const total=testQuestions.length;const pct=Math.round(testScore/total*100);$('test').innerHTML=`<div class="testPage"><div class="testCard" style="text-align:center"><div style="font-size:55px">🏆</div><h1 style="color:var(--navy)">Hoàn thành rồi, Cẩm Tiên!</h1><p class="testQuestion" style="font-size:26px">${testScore}/${total} câu đúng</p><p class="intro">Kết quả: ${pct}% 🎉</p><button class="checkBtn" onclick="openUnit('${current}')">📖 Quay lại bài học</button><button class="speak" onclick="startChallenge()">🔄 Làm thử thách lại</button></div></div>`}
-renderHome();
-</script>
-</body></html>
+<body class="antialiased selection:bg-amber-400 selection:text-navy-900">
+
+    <!-- Decorative background blobs -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-24 -left-24 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 -right-24 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-24 left-1/4 w-80 h-80 bg-sky-400/15 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 max-w-5xl mx-auto px-3 sm:px-6 py-4 sm:py-6 flex flex-col min-h-screen">
+
+        <!-- Top Header & Stats Bar -->
+        <header class="glass-panel rounded-3xl p-4 sm:p-5 mb-5 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5 w-full md:w-auto justify-between md:justify-start">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-amber-300 to-amber-500 flex items-center justify-center text-2xl sm:text-3xl shadow-lg shadow-amber-500/30 animate-float">
+                        🦉
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 text-xs font-extrabold uppercase tracking-wider bg-sky-400/20 text-sky-200 border border-sky-300/30 rounded-full">
+                                Global Success 3
+                            </span>
+                            <span id="badge-level" class="px-2.5 py-0.5 text-xs font-bold bg-amber-400/20 text-amber-200 border border-amber-300/30 rounded-full">
+                                Tân Binh 🌟
+                            </span>
+                        </div>
+                        <h1 class="font-display font-black text-xl sm:text-2xl text-white tracking-tight mt-0.5">
+                            English Vocabulary & Spelling
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats & Reset Button -->
+            <div class="flex items-center flex-wrap justify-center sm:justify-end gap-2.5 w-full md:w-auto">
+                <!-- Stars -->
+                <div class="flex items-center gap-2 bg-navy-950/60 border border-amber-400/30 px-3.5 py-2 rounded-2xl" title="Số sao thưởng tích lũy">
+                    <span class="text-xl">⭐</span>
+                    <div>
+                        <div class="text-[10px] uppercase tracking-wider text-navy-200 font-semibold">Sao thưởng</div>
+                        <div id="stat-stars" class="font-display font-black text-base sm:text-lg text-amber-300 leading-none">0</div>
+                    </div>
+                </div>
+
+                <!-- Streak -->
+                <div class="flex items-center gap-2 bg-navy-950/60 border border-orange-400/30 px-3.5 py-2 rounded-2xl" title="Chuỗi trả lời đúng liên tiếp">
+                    <span class="text-xl">🔥</span>
+                    <div>
+                        <div class="text-[10px] uppercase tracking-wider text-navy-200 font-semibold">Chuỗi đúng</div>
+                        <div id="stat-streak" class="font-display font-black text-base sm:text-lg text-orange-300 leading-none">0</div>
+                    </div>
+                </div>
+
+                <!-- Mastered Progress -->
+                <div class="flex items-center gap-2 bg-navy-950/60 border border-emerald-400/30 px-3.5 py-2 rounded-2xl" title="Số từ đã thuộc">
+                    <span class="text-xl">🏆</span>
+                    <div>
+                        <div class="text-[10px] uppercase tracking-wider text-navy-200 font-semibold">Đã thuộc</div>
+                        <div id="stat-mastered" class="font-display font-black text-base sm:text-lg text-emerald-300 leading-none">0/54</div>
+                    </div>
+                </div>
+
+                <!-- Reset Button -->
+                <button onclick="openResetModal()" class="p-2.5 sm:p-3 rounded-2xl bg-white/10 hover:bg-rose-500/20 text-navy-200 hover:text-rose-200 border border-white/15 hover:border-rose-400/40 transition-all" title="Đặt lại tiến độ học">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Unit Selector Bar -->
+        <section class="mb-5">
+            <div class="flex items-center justify-between mb-2 px-1">
+                <span class="text-xs font-bold uppercase tracking-wider text-navy-200 flex items-center gap-1.5">
+                    <span>📚</span> Chọn bài học (Unit 1 - Unit 6)
+                </span>
+                <span id="unit-word-count" class="text-xs font-semibold text-sky-300">Đang chọn: 8 từ</span>
+            </div>
+            <div id="unit-selector" class="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+                <!-- Unit pills injected by JS -->
+            </div>
+        </section>
+
+        <!-- 4 Learning Modes Navigation -->
+        <nav class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mb-6">
+            <button onclick="switchMode('flashcard')" id="tab-flashcard" class="mode-tab group p-3 sm:p-3.5 rounded-2xl border text-left transition-all flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0 transition-transform group-hover:scale-110">
+                    🗂️
+                </div>
+                <div>
+                    <div class="font-display font-extrabold text-sm sm:text-base leading-tight">Thẻ Ghi Nhớ</div>
+                    <div class="text-[11px] opacity-80 mt-0.5">Xem nghĩa & ví dụ</div>
+                </div>
+            </button>
+
+            <button onclick="switchMode('scramble')" id="tab-scramble" class="mode-tab group p-3 sm:p-3.5 rounded-2xl border text-left transition-all flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0 transition-transform group-hover:scale-110">
+                    🧩
+                </div>
+                <div>
+                    <div class="font-display font-extrabold text-sm sm:text-base leading-tight">Ghép Chữ Cái</div>
+                    <div class="text-[11px] opacity-80 mt-0.5">Xếp đúng chính tả</div>
+                </div>
+            </button>
+
+            <button onclick="switchMode('dictation')" id="tab-dictation" class="mode-tab group p-3 sm:p-3.5 rounded-2xl border text-left transition-all flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0 transition-transform group-hover:scale-110">
+                    🎧
+                </div>
+                <div>
+                    <div class="font-display font-extrabold text-sm sm:text-base leading-tight">Nghe & Gõ Từ</div>
+                    <div class="text-[11px] opacity-80 mt-0.5">Luyện nghe & viết</div>
+                </div>
+            </button>
+
+            <button onclick="switchMode('context')" id="tab-context" class="mode-tab group p-3 sm:p-3.5 rounded-2xl border text-left transition-all flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0 transition-transform group-hover:scale-110">
+                    🎯
+                </div>
+                <div>
+                    <div class="font-display font-extrabold text-sm sm:text-base leading-tight">Điền Vào Câu</div>
+                    <div class="text-[11px] opacity-80 mt-0.5">Hiểu từ ngữ cảnh</div>
+                </div>
+            </button>
+        </nav>
+
+        <!-- Main Learning Stage -->
+        <main id="learning-stage" class="flex-1 flex flex-col">
+            <!-- Dynamic Content Rendered Here -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-8 text-center text-xs text-navy-300/80 pb-2">
+            Sách Tiếng Anh 3 - Global Success (Tập 1: Unit 1 – Unit 6) • Thiết kế hỗ trợ bé luyện từ vựng & chính tả chuẩn xác 🌟
+        </footer>
+    </div>
+
+    <!-- Custom HTML Modal (Replaces alert() and confirm()) -->
+    <div id="custom-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-navy-950/80 backdrop-blur-sm transition-opacity">
+        <div class="glass-card-light rounded-3xl max-w-md w-full p-6 sm:p-7 text-center transform transition-all animate-pop shadow-2xl">
+            <div id="modal-icon" class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-navy-100 flex items-center justify-center text-4xl shadow-inner">
+                🎉
+            </div>
+            <h3 id="modal-title" class="font-display font-black text-2xl text-navy-900 mb-2">
+                Hoàn thành xuất sắc!
+            </h3>
+            <p id="modal-message" class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                Bé đã hoàn thành tất cả các từ trong vòng này!
+            </p>
+            <div id="modal-actions" class="flex flex-col sm:flex-row gap-3 justify-center">
+                <!-- Buttons injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * =========================================================================
+         * 1. COMPLETE VOCABULARY DATABASE (GLOBAL SUCCESS GRADE 3 - VOL 1: UNIT 1-6)
+         * =========================================================================
+         */
+        const VOCAB_DATA = [
+            // UNIT 1: HELLO
+            { id: 'u1_1', unit: 1, unitName: 'Unit 1: Hello', word: 'hello', ipa: '/həˈləʊ/', meaning: 'Xin chào', example: "Hello, Tony! I'm Nam.", exampleVi: 'Xin chào, Tony. Mình là Nam.', emoji: '👋' },
+            { id: 'u1_2', unit: 1, unitName: 'Unit 1: Hello', word: 'hi', ipa: '/haɪ/', meaning: 'Chào', example: 'Hi, Mary! Nice to meet you.', exampleVi: 'Chào, Mary. Rất vui được gặp bạn.', emoji: '😊' },
+            { id: 'u1_3', unit: 1, unitName: 'Unit 1: Hello', word: 'how', ipa: '/haʊ/', meaning: 'Như thế nào', example: "How is he? - He's fine.", exampleVi: 'Cậu ấy thế nào? - Cậu ấy khỏe.', emoji: '🤔' },
+            { id: 'u1_4', unit: 1, unitName: 'Unit 1: Hello', word: 'fine', ipa: '/faɪn/', meaning: 'Khỏe, tốt', example: "She's fine, thanks.", exampleVi: 'Cô ấy khỏe, cảm ơn.', emoji: '👍' },
+            { id: 'u1_5', unit: 1, unitName: 'Unit 1: Hello', word: 'goodbye', ipa: '/ˌɡʊdˈbaɪ/', meaning: 'Tạm biệt', example: 'Goodbye, Ben. See you again!', exampleVi: 'Tạm biệt, Ben. Hẹn gặp lại bạn!', emoji: '👋✨' },
+            { id: 'u1_6', unit: 1, unitName: 'Unit 1: Hello', word: 'bye', ipa: '/baɪ/', meaning: 'Tạm biệt', example: 'Bye, Lucy. See you later!', exampleVi: 'Tạm biệt, Lucy. Gặp cậu sau nhé!', emoji: '🙋' },
+            { id: 'u1_7', unit: 1, unitName: 'Unit 1: Hello', word: 'thank you', ipa: '/ˈθæŋk juː/', meaning: 'Cảm ơn bạn', example: 'Thank you.', exampleVi: 'Cảm ơn bạn.', emoji: '🙏' },
+            { id: 'u1_8', unit: 1, unitName: 'Unit 1: Hello', word: 'name', ipa: '/neɪm/', meaning: 'Tên', example: 'My name is Linh.', exampleVi: 'Tên mình là Linh.', emoji: '📛' },
+
+            // UNIT 2: OUR NAMES
+            { id: 'u2_1', unit: 2, unitName: 'Unit 2: Our names', word: 'name', ipa: '/neɪm/', meaning: 'Tên', example: 'Hi. My name is Ben.', exampleVi: 'Xin chào. Mình tên là Ben.', emoji: '🏷️' },
+            { id: 'u2_2', unit: 2, unitName: 'Unit 2: Our names', word: 'what', ipa: '/wɒt/', meaning: 'Cái gì', example: "What is this? It's a pen.", exampleVi: 'Đây là cái gì vậy? - Đó là một cái bút.', emoji: '❓' },
+            { id: 'u2_3', unit: 2, unitName: 'Unit 2: Our names', word: 'my', ipa: '/maɪ/', meaning: 'Của tôi', example: 'My pen is red.', exampleVi: 'Chiếc bút của tôi màu đỏ.', emoji: '🙋‍♂️' },
+            { id: 'u2_4', unit: 2, unitName: 'Unit 2: Our names', word: 'your', ipa: '/jɔː(r)/', meaning: 'Của bạn', example: 'Where is your schoolbag?', exampleVi: 'Cặp sách của bạn ở đâu?', emoji: '👉' },
+            { id: 'u2_5', unit: 2, unitName: 'Unit 2: Our names', word: 'our', ipa: '/ˈaʊə(r)/', meaning: 'Của chúng tôi', example: 'Our school is small.', exampleVi: 'Trường học của chúng tôi nhỏ.', emoji: '🤝' },
+            { id: 'u2_6', unit: 2, unitName: 'Unit 2: Our names', word: 'how old', ipa: '/haʊ əʊld/', meaning: 'Bao nhiêu tuổi', example: 'How old is she?', exampleVi: 'Cô ấy bao nhiêu tuổi?', emoji: '🎂' },
+            { id: 'u2_7', unit: 2, unitName: 'Unit 2: Our names', word: 'eight', ipa: '/eɪt/', meaning: 'Số tám, 8', example: 'My sister is eight years old.', exampleVi: 'Em gái mình 8 tuổi.', emoji: '8️⃣' },
+            { id: 'u2_8', unit: 2, unitName: 'Unit 2: Our names', word: 'nine', ipa: '/naɪn/', meaning: 'Số chín, 9', example: 'Nam and Mai are nine years old.', exampleVi: 'Nam và Mai đều 9 tuổi.', emoji: '9️⃣' },
+            { id: 'u2_9', unit: 2, unitName: 'Unit 2: Our names', word: 'ten', ipa: '/ten/', meaning: 'Số mười, 10', example: 'My brother is ten years old.', exampleVi: 'Anh trai mình mười tuổi.', emoji: '🔟' },
+
+            // UNIT 3: OUR FRIENDS
+            { id: 'u3_1', unit: 3, unitName: 'Unit 3: Our friends', word: 'Mr.', ipa: '/ˈmɪstə(r)/', meaning: 'Ông, thầy', example: 'Mr. Long is my teacher.', exampleVi: 'Ông Long là thầy giáo của tôi.', emoji: '👨‍🏫' },
+            { id: 'u3_2', unit: 3, unitName: 'Unit 3: Our friends', word: 'Ms.', ipa: '/mɪz/', meaning: 'Bà, cô', example: 'This is Ms. Hien.', exampleVi: 'Đây là cô Hiền.', emoji: '👩‍🏫' },
+            { id: 'u3_3', unit: 3, unitName: 'Unit 3: Our friends', word: 'this', ipa: '/ðɪs/', meaning: 'Đây', example: 'This is a blue notebook.', exampleVi: 'Đây là một quyển vở màu xanh.', emoji: '👇' },
+            { id: 'u3_4', unit: 3, unitName: 'Unit 3: Our friends', word: 'that', ipa: '/ðæt/', meaning: 'Kia', example: 'That is my friend.', exampleVi: 'Kia là bạn của tôi.', emoji: '👉' },
+            { id: 'u3_5', unit: 3, unitName: 'Unit 3: Our friends', word: 'yes', ipa: '/jes/', meaning: 'Vâng, đúng', example: 'Is that a pen? Yes, it is.', exampleVi: 'Kia là chiếc bút phải không? - Đúng vậy.', emoji: '✅' },
+            { id: 'u3_6', unit: 3, unitName: 'Unit 3: Our friends', word: 'no', ipa: '/nəʊ/', meaning: 'Không', example: "Is this Miss Hoa? No, it isn't.", exampleVi: 'Đây là cô Hoa phải không? - Không phải.', emoji: '❌' },
+            { id: 'u3_7', unit: 3, unitName: 'Unit 3: Our friends', word: 'friend', ipa: '/frend/', meaning: 'Bạn bè', example: 'Nam is my friend.', exampleVi: 'Nam là bạn của tôi.', emoji: '👫' },
+            { id: 'u3_8', unit: 3, unitName: 'Unit 3: Our friends', word: 'teacher', ipa: '/ˈtiːtʃə(r)/', meaning: 'Giáo viên', example: 'My teacher is very kind.', exampleVi: 'Cô giáo của mình rất tốt.', emoji: '🧑‍🏫' },
+            { id: 'u3_9', unit: 3, unitName: 'Unit 3: Our friends', word: 'it', ipa: '/ɪt/', meaning: 'Nó', example: 'It is an interesting book.', exampleVi: 'Đó là một quyển sách hay.', emoji: '📦' },
+
+            // UNIT 4: OUR BODIES
+            { id: 'u4_1', unit: 4, unitName: 'Unit 4: Our bodies', word: 'ear', ipa: '/ɪə(r)/', meaning: 'Tai', example: 'A rabbit has big ears.', exampleVi: 'Con thỏ có đôi tai to.', emoji: '👂' },
+            { id: 'u4_2', unit: 4, unitName: 'Unit 4: Our bodies', word: 'eye', ipa: '/aɪ/', meaning: 'Mắt', example: 'Her eyes are small.', exampleVi: 'Mắt của cô ấy nhỏ.', emoji: '👁️' },
+            { id: 'u4_3', unit: 4, unitName: 'Unit 4: Our bodies', word: 'face', ipa: '/feɪs/', meaning: 'Mặt', example: 'Touch your face!', exampleVi: 'Hãy chạm vào mặt của bạn!', emoji: '😊' },
+            { id: 'u4_4', unit: 4, unitName: 'Unit 4: Our bodies', word: 'hair', ipa: '/heə(r)/', meaning: 'Tóc', example: "Hoa's hair is very long.", exampleVi: 'Tóc của Hoa rất dài.', emoji: '💇' },
+            { id: 'u4_5', unit: 4, unitName: 'Unit 4: Our bodies', word: 'hand', ipa: '/hænd/', meaning: 'Bàn tay', example: 'Her hands are nice.', exampleVi: 'Bàn tay của cô ấy đẹp.', emoji: '✋' },
+            { id: 'u4_6', unit: 4, unitName: 'Unit 4: Our bodies', word: 'mouth', ipa: '/maʊθ/', meaning: 'Miệng', example: 'Open your mouth!', exampleVi: 'Hãy mở miệng nào!', emoji: '👄' },
+            { id: 'u4_7', unit: 4, unitName: 'Unit 4: Our bodies', word: 'nose', ipa: '/nəʊz/', meaning: 'Mũi', example: "It's my nose.", exampleVi: 'Đó là mũi của tớ.', emoji: '👃' },
+            { id: 'u4_8', unit: 4, unitName: 'Unit 4: Our bodies', word: 'touch', ipa: '/tʌtʃ/', meaning: 'Chạm, sờ', example: 'Touch your nose!', exampleVi: 'Hãy chạm vào mũi của bạn!', emoji: '👆' },
+            { id: 'u4_9', unit: 4, unitName: 'Unit 4: Our bodies', word: 'open', ipa: '/ˈəʊpən/', meaning: 'Mở, há', example: 'Open your book!', exampleVi: 'Hãy mở sách của bạn!', emoji: '📖' },
+            { id: 'u4_10', unit: 4, unitName: 'Unit 4: Our bodies', word: 'play', ipa: '/pleɪ/', meaning: 'Chơi', example: "Let's play football.", exampleVi: 'Hãy chơi bóng đá nào.', emoji: '⚽' },
+
+            // UNIT 5: MY HOBBIES
+            { id: 'u5_1', unit: 5, unitName: 'Unit 5: My hobbies', word: 'hobby', ipa: '/ˈhɒbi/', meaning: 'Sở thích', example: "Mai's hobby is cooking.", exampleVi: 'Sở thích của Mai là nấu ăn.', emoji: '⭐' },
+            { id: 'u5_2', unit: 5, unitName: 'Unit 5: My hobbies', word: 'singing', ipa: '/ˈsɪŋɪŋ/', meaning: 'Hát', example: 'Linh is singing an English song.', exampleVi: 'Linh đang hát bài hát tiếng Anh.', emoji: '🎤' },
+            { id: 'u5_3', unit: 5, unitName: 'Unit 5: My hobbies', word: 'dancing', ipa: '/ˈdɑːnsɪŋ/', meaning: 'Nhảy múa, khiêu vũ', example: 'Tony likes dancing.', exampleVi: 'Tony thích khiêu vũ.', emoji: '💃' },
+            { id: 'u5_4', unit: 5, unitName: 'Unit 5: My hobbies', word: 'cooking', ipa: '/ˈkʊkɪŋ/', meaning: 'Nấu ăn', example: "Cooking is my mother's hobby.", exampleVi: 'Nấu ăn là sở thích của mẹ tôi.', emoji: '🍳' },
+            { id: 'u5_5', unit: 5, unitName: 'Unit 5: My hobbies', word: 'drawing', ipa: '/ˈdrɔːɪŋ/', meaning: 'Vẽ', example: 'Lan likes drawing a picture.', exampleVi: 'Lan thích vẽ tranh.', emoji: '✏️' },
+            { id: 'u5_6', unit: 5, unitName: 'Unit 5: My hobbies', word: 'swimming', ipa: '/ˈswɪmɪŋ/', meaning: 'Bơi', example: 'He likes swimming in the pool.', exampleVi: 'Cậu ấy thích bơi ở bể bơi.', emoji: '🏊' },
+            { id: 'u5_7', unit: 5, unitName: 'Unit 5: My hobbies', word: 'walking', ipa: '/ˈwɔːkɪŋ/', meaning: 'Đi bộ', example: 'My father likes walking on Sundays.', exampleVi: 'Bố tôi thích đi bộ vào ngày Chủ nhật.', emoji: '🚶' },
+            { id: 'u5_8', unit: 5, unitName: 'Unit 5: My hobbies', word: 'painting', ipa: '/ˈpeɪntɪŋ/', meaning: 'Tô màu', example: 'My sister likes painting.', exampleVi: 'Em gái mình thích tô màu.', emoji: '🎨' },
+            { id: 'u5_9', unit: 5, unitName: 'Unit 5: My hobbies', word: 'running', ipa: '/ˈrʌnɪŋ/', meaning: 'Chạy', example: 'My brother likes running.', exampleVi: 'Em trai mình thích chạy.', emoji: '🏃' },
+            { id: 'u5_10', unit: 5, unitName: 'Unit 5: My hobbies', word: 'like', ipa: '/laɪk/', meaning: 'Thích', example: 'I like a pet.', exampleVi: 'Mình thích thú cưng.', emoji: '❤️' },
+
+            // UNIT 6: OUR SCHOOL
+            { id: 'u6_1', unit: 6, unitName: 'Unit 6: Our school', word: 'school', ipa: '/skuːl/', meaning: 'Trường học', example: 'My school is very nice.', exampleVi: 'Trường học của mình rất đẹp.', emoji: '🏫' },
+            { id: 'u6_2', unit: 6, unitName: 'Unit 6: Our school', word: 'classroom', ipa: '/ˈklɑːsruːm/', meaning: 'Lớp học', example: 'My classroom is very large.', exampleVi: 'Lớp học của mình rất rộng.', emoji: '🧑‍🎓' },
+            { id: 'u6_3', unit: 6, unitName: 'Unit 6: Our school', word: 'playground', ipa: '/ˈpleɪɡraʊnd/', meaning: 'Sân chơi', example: 'Students often play in the playground.', exampleVi: 'Học sinh thường chơi ở sân chơi.', emoji: '🛝' },
+            { id: 'u6_4', unit: 6, unitName: 'Unit 6: Our school', word: 'library', ipa: '/ˈlaɪbrəri/', meaning: 'Thư viện', example: 'We usually read books in the library.', exampleVi: 'Chúng tôi thường đọc sách ở thư viện.', emoji: '📚' },
+            { id: 'u6_5', unit: 6, unitName: 'Unit 6: Our school', word: 'art room', ipa: '/ˈɑːt ruːm/', meaning: 'Phòng mỹ thuật', example: 'Our art room has a lot of pictures.', exampleVi: 'Phòng mỹ thuật của chúng tôi có nhiều tranh.', emoji: '🖼️' },
+            { id: 'u6_6', unit: 6, unitName: 'Unit 6: Our school', word: 'computer room', ipa: '/kəmˈpjuːtə(r) ruːm/', meaning: 'Phòng máy tính', example: 'Our school has two computer rooms.', exampleVi: 'Trường của chúng tôi có hai phòng máy tính.', emoji: '💻' },
+            { id: 'u6_7', unit: 6, unitName: 'Unit 6: Our school', word: 'music room', ipa: '/ˈmjuːzɪk ruːm/', meaning: 'Phòng âm nhạc', example: "Let's go to the music room.", exampleVi: 'Chúng ta hãy cùng đến phòng âm nhạc nhé.', emoji: '🎵' },
+            { id: 'u6_8', unit: 6, unitName: 'Unit 6: Our school', word: 'gym', ipa: '/dʒɪm/', meaning: 'Phòng tập thể dục', example: 'Our gym is very modern.', exampleVi: 'Phòng tập thể dục của chúng tôi rất hiện đại.', emoji: '🤸' }
+        ];
+
+        /**
+         * =========================================================================
+         * 2. STATE MANAGEMENT & LOCAL STORAGE
+         * =========================================================================
+         */
+        const STORAGE_KEY = 'gs3_vocab_app_v1';
+
+        let state = {
+            selectedUnit: 1, // 1..6, 'all', 'mistakes'
+            mode: 'flashcard', // 'flashcard', 'scramble', 'dictation', 'context'
+            stars: 0,
+            streak: 0,
+            masteredIds: [], // Array of word IDs
+            mistakeIds: [],  // Array of word IDs
+            // Active session state
+            deck: [],
+            currentIndex: 0,
+            // Mode-specific states
+            scrambleSelected: [], // [{char, poolIdx}]
+            scramblePool: [],     // [{char, used}]
+            scrambleStatus: null, // null | 'correct' | 'wrong'
+            dictationInput: '',
+            dictationChecked: false,
+            dictationCorrect: false,
+            contextOptions: [],
+            contextSelected: null,
+            contextAnswered: false
+        };
+
+        function loadProgress() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    state.stars = parsed.stars || 0;
+                    state.masteredIds = Array.isArray(parsed.masteredIds) ? parsed.masteredIds : [];
+                    state.mistakeIds = Array.isArray(parsed.mistakeIds) ? parsed.mistakeIds : [];
+                }
+            } catch (e) {
+                console.warn('Could not load saved progress:', e);
+            }
+        }
+
+        function saveProgress() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    stars: state.stars,
+                    masteredIds: state.masteredIds,
+                    mistakeIds: state.mistakeIds
+                }));
+            } catch (e) {
+                console.warn('Could not save progress:', e);
+            }
+            updateHeaderStats();
+        }
+
+        /**
+         * =========================================================================
+         * 3. AUDIO & SPEECH SYNTHESIS (NATIVE PRONUNCIATION + SOUND FX)
+         * =========================================================================
+         */
+        let synth = null;
+        function initTone() {
+            if (!synth && typeof Tone !== 'undefined') {
+                synth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: 'triangle' },
+                    envelope: { attack: 0.02, decay: 0.15, sustain: 0.1, release: 0.3 }
+                }).toDestination();
+                synth.volume.value = -8;
+            }
+        }
+
+        function playSound(type) {
+            try {
+                initTone();
+                if (!synth) return;
+                if (Tone.context.state !== 'running') Tone.start();
+
+                const now = Tone.now();
+                if (type === 'click') {
+                    synth.triggerAttackRelease('C5', '32n', now);
+                } else if (type === 'correct') {
+                    synth.triggerAttackRelease(['C5', 'E5', 'G5'], '16n', now);
+                    synth.triggerAttackRelease(['C6'], '8n', now + 0.12);
+                } else if (type === 'wrong') {
+                    synth.triggerAttackRelease(['E3', 'Eb3'], '8n', now);
+                } else if (type === 'complete') {
+                    synth.triggerAttackRelease('C5', '16n', now);
+                    synth.triggerAttackRelease('E5', '16n', now + 0.1);
+                    synth.triggerAttackRelease('G5', '16n', now + 0.2);
+                    synth.triggerAttackRelease('C6', '4n', now + 0.3);
+                }
+            } catch (e) {
+                // Ignore audio errors on restricted devices
+            }
+        }
+
+        function speakText(text, rate = 0.95) {
+            if (!('speechSynthesis' in window)) {
+                showCustomModal('Thông báo âm thanh', 'Trình duyệt của bé chưa hỗ trợ đọc giọng nói tự động.', '🔇', [
+                    { text: 'Đã hiểu', primary: true, onClick: closeCustomModal }
+                ]);
+                return;
+            }
+            window.speechSynthesis.cancel();
+            // Expand Mr. and Ms. for clearer pronunciation
+            let cleanText = text.replace(/\bMr\./g, 'Mister').replace(/\bMs\./g, 'Miss');
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = 'en-US';
+            utterance.rate = rate;
+            utterance.pitch = 1.05;
+
+            // Prefer high-quality English voices if available
+            const voices = window.speechSynthesis.getVoices();
+            const enVoice = voices.find(v => v.lang.includes('en-US') && (v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Natural')))
+                         || voices.find(v => v.lang.startsWith('en'));
+            if (enVoice) utterance.voice = enVoice;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Preload voices
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+        }
+
+        /**
+         * =========================================================================
+         * 4. CUSTOM HTML MODAL SYSTEM (NO NATIVE ALERT / CONFIRM)
+         * =========================================================================
+         */
+        function showCustomModal(title, message, icon = '🌟', buttons = []) {
+            const modal = document.getElementById('custom-modal');
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-message').innerHTML = message;
+            document.getElementById('modal-icon').textContent = icon;
+
+            const actionsEl = document.getElementById('modal-actions');
+            actionsEl.innerHTML = '';
+
+            buttons.forEach(btn => {
+                const button = document.createElement('button');
+                button.textContent = btn.text;
+                button.className = btn.primary
+                    ? 'px-6 py-3 rounded-2xl font-display font-extrabold text-white bg-gradient-to-r from-navy-700 to-blue-600 hover:from-navy-800 hover:to-blue-700 shadow-lg shadow-navy-700/30 transition-all active:scale-95'
+                    : btn.danger
+                    ? 'px-6 py-3 rounded-2xl font-display font-extrabold text-white bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 shadow-lg shadow-rose-500/30 transition-all active:scale-95'
+                    : 'px-6 py-3 rounded-2xl font-display font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-all active:scale-95';
+                button.onclick = () => {
+                    if (btn.onClick) btn.onClick();
+                };
+                actionsEl.appendChild(button);
+            });
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCustomModal() {
+            const modal = document.getElementById('custom-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function openResetModal() {
+            showCustomModal(
+                'Đặt lại tiến độ học?',
+                'Tất cả <b>sao thưởng</b>, <b>từ đã thuộc</b> và <b>danh sách từ hay sai</b> của bé sẽ được đưa về 0. Bé có chắc chắn muốn bắt đầu lại từ đầu không?',
+                '🔄',
+                [
+                    { text: 'Hủy bỏ', primary: false, onClick: closeCustomModal },
+                    {
+                        text: 'Đồng ý đặt lại',
+                        danger: true,
+                        onClick: () => {
+                            state.stars = 0;
+                            state.streak = 0;
+                            state.masteredIds = [];
+                            state.mistakeIds = [];
+                            saveProgress();
+                            closeCustomModal();
+                            if (state.selectedUnit === 'mistakes') {
+                                selectUnit(1);
+                            } else {
+                                buildDeck();
+                                renderAll();
+                            }
+                        }
+                    }
+                ]
+            );
+        }
+
+        /**
+         * =========================================================================
+         * 5. DECK BUILDING & NAVIGATION
+         * =========================================================================
+         */
+        function getFilteredWords() {
+            if (state.selectedUnit === 'all') {
+                return [...VOCAB_DATA];
+            }
+            if (state.selectedUnit === 'mistakes') {
+                return VOCAB_DATA.filter(item => state.mistakeIds.includes(item.id));
+            }
+            return VOCAB_DATA.filter(item => item.unit === state.selectedUnit);
+        }
+
+        function shuffleArray(arr) {
+            const copy = [...arr];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function buildDeck(shouldShuffle = false) {
+            const words = getFilteredWords();
+            state.deck = shouldShuffle ? shuffleArray(words) : words;
+            state.currentIndex = 0;
+            setupQuestionState();
+        }
+
+        function selectUnit(unit) {
+            playSound('click');
+            if (unit === 'mistakes' && state.mistakeIds.length === 0) {
+                showCustomModal(
+                    'Tuyệt vời quá! 🎉',
+                    'Hiện tại bé chưa có từ nào bị sai cần ôn lại. Hãy tiếp tục luyện tập các Unit nhé!',
+                    '🌟',
+                    [{ text: 'Tiếp tục học', primary: true, onClick: closeCustomModal }]
+                );
+                return;
+            }
+            state.selectedUnit = unit;
+            buildDeck(state.mode !== 'flashcard');
+            renderAll();
+        }
+
+        function switchMode(mode) {
+            playSound('click');
+            state.mode = mode;
+            buildDeck(mode !== 'flashcard');
+            renderAll();
+        }
+
+        function setupQuestionState() {
+            if (state.deck.length === 0) return;
+            const current = state.deck[state.currentIndex];
+
+            // 1. Setup Scramble
+            const chars = current.word.split('');
+            let shuffled = shuffleArray(chars.map((char, idx) => ({ char, origIdx: idx, used: false })));
+            // Ensure it's actually scrambled if length > 1
+            if (chars.length > 1 && shuffled.map(x => x.char).join('') === current.word) {
+                shuffled.reverse();
+            }
+            state.scramblePool = shuffled;
+            state.scrambleSelected = [];
+            state.scrambleStatus = null;
+
+            // 2. Setup Dictation
+            state.dictationInput = '';
+            state.dictationChecked = false;
+            state.dictationCorrect = false;
+
+            // 3. Setup Context Quiz
+            state.contextSelected = null;
+            state.contextAnswered = false;
+            const distractors = shuffleArray(
+                VOCAB_DATA.filter(w => w.word.toLowerCase() !== current.word.toLowerCase())
+            ).slice(0, 3);
+            state.contextOptions = shuffleArray([current, ...distractors]);
+        }
+
+        function recordAnswer(wordId, isCorrect) {
+            if (isCorrect) {
+                playSound('correct');
+                state.stars += 10;
+                state.streak += 1;
+                // Remove from mistakes if answered correctly
+                state.mistakeIds = state.mistakeIds.filter(id => id !== wordId);
+            } else {
+                playSound('wrong');
+                state.streak = 0;
+                if (!state.mistakeIds.includes(wordId)) {
+                    state.mistakeIds.push(wordId);
+                }
+            }
+            saveProgress();
+        }
+
+        function toggleMastered(wordId) {
+            playSound('click');
+            if (state.masteredIds.includes(wordId)) {
+                state.masteredIds = state.masteredIds.filter(id => id !== wordId);
+            } else {
+                state.masteredIds.push(wordId);
+                state.stars += 5;
+                playSound('correct');
+            }
+            saveProgress();
+            renderAll();
+        }
+
+        function nextCard() {
+            playSound('click');
+            if (state.currentIndex < state.deck.length - 1) {
+                state.currentIndex++;
+                setupQuestionState();
+                renderStage();
+                // Auto pronounce in listening modes
+                if (state.mode === 'dictation' || state.mode === 'flashcard') {
+                    setTimeout(() => speakText(state.deck[state.currentIndex].word), 200);
+                }
+            } else {
+                // Finished the deck!
+                playSound('complete');
+                if (typeof confetti === 'function') {
+                    confetti({ particleCount: 90, spread: 70, origin: { y: 0.6 } });
+                }
+                showCustomModal(
+                    'Chúc mừng bé hoàn thành! 🏆',
+                    `Bé đã luyện xong toàn bộ <b>${state.deck.length} từ</b> trong phần này!<br>Tổng số sao hiện tại của bé: <span class="text-amber-600 font-black text-lg">⭐ ${state.stars}</span>`,
+                    '🎉',
+                    [
+                        {
+                            text: 'Luyện lại vòng này',
+                            primary: false,
+                            onClick: () => {
+                                closeCustomModal();
+                                buildDeck(state.mode !== 'flashcard');
+                                renderAll();
+                            }
+                        },
+                        {
+                            text: 'Chuyển chế độ khác',
+                            primary: true,
+                            onClick: () => {
+                                closeCustomModal();
+                                const modes = ['flashcard', 'scramble', 'dictation', 'context'];
+                                const nextMode = modes[(modes.indexOf(state.mode) + 1) % modes.length];
+                                switchMode(nextMode);
+                            }
+                        }
+                    ]
+                );
+            }
+        }
+
+        function prevCard() {
+            if (state.currentIndex > 0) {
+                playSound('click');
+                state.currentIndex--;
+                setupQuestionState();
+                renderStage();
+            }
+        }
+
+        /**
+         * =========================================================================
+         * 6. RENDERING UI COMPONENTS
+         * =========================================================================
+         */
+        function updateHeaderStats() {
+            document.getElementById('stat-stars').textContent = state.stars;
+            document.getElementById('stat-streak').textContent = state.streak;
+            document.getElementById('stat-mastered').textContent = `${state.masteredIds.length}/${VOCAB_DATA.length}`;
+
+            // Update badge level based on stars
+            const badgeEl = document.getElementById('badge-level');
+            if (state.stars >= 500) {
+                badgeEl.textContent = 'Siêu Sao Tiếng Anh 👑';
+            } else if (state.stars >= 250) {
+                badgeEl.textContent = 'Nhà Thông Thái 🎓';
+            } else if (state.stars >= 100) {
+                badgeEl.textContent = 'Ong Chăm Chỉ 🐝';
+            } else {
+                badgeEl.textContent = 'Tân Binh 🌟';
+            }
+        }
+
+        function renderUnitSelector() {
+            const container = document.getElementById('unit-selector');
+            const units = [
+                { id: 1, label: 'Unit 1: Hello', icon: '👋' },
+                { id: 2, label: 'Unit 2: Our names', icon: '🎂' },
+                { id: 3, label: 'Unit 3: Our friends', icon: '👫' },
+                { id: 4, label: 'Unit 4: Our bodies', icon: '👀' },
+                { id: 5, label: 'Unit 5: My hobbies', icon: '🎨' },
+                { id: 6, label: 'Unit 6: Our school', icon: '🏫' },
+                { id: 'all', label: 'Tất cả (Unit 1-6)', icon: '🌈' },
+                { id: 'mistakes', label: `Từ hay sai (${state.mistakeIds.length})`, icon: '🎯' }
+            ];
+
+            container.innerHTML = units.map(u => {
+                const isActive = state.selectedUnit === u.id;
+                const activeClasses = 'bg-gradient-to-r from-amber-400 to-amber-500 text-navy-950 font-extrabold border-amber-300 shadow-lg shadow-amber-500/25 scale-[1.02]';
+                const inactiveClasses = 'bg-white/10 hover:bg-white/15 text-white font-semibold border-white/15';
+                return `
+                    <button onclick="selectUnit(${typeof u.id === 'string' ? `'${u.id}'` : u.id})"
+                        class="shrink-0 px-3.5 py-2 rounded-2xl border text-xs sm:text-sm transition-all flex items-center gap-1.5 ${isActive ? activeClasses : inactiveClasses}">
+                        <span>${u.icon}</span>
+                        <span>${u.label}</span>
+                    </button>
+                `;
+            }).join('');
+
+            document.getElementById('unit-word-count').textContent = `Đang luyện: ${state.deck.length} từ vựng`;
+        }
+
+        function renderModeTabs() {
+            const modes = ['flashcard', 'scramble', 'dictation', 'context'];
+            modes.forEach(m => {
+                const el = document.getElementById(`tab-${m}`);
+                const iconBox = el.querySelector('div');
+                if (state.mode === m) {
+                    el.className = 'mode-tab group p-3 sm:p-3.5 rounded-2xl border-2 border-sky-300 bg-gradient-to-br from-blue-600/90 to-navy-700/90 text-white shadow-lg shadow-blue-900/50 text-left transition-all flex items-center gap-3';
+                    iconBox.className = 'w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-xl shrink-0 transition-transform group-hover:scale-110';
+                } else {
+                    el.className = 'mode-tab group p-3 sm:p-3.5 rounded-2xl border border-white/15 bg-white/5 hover:bg-white/10 text-navy-100 text-left transition-all flex items-center gap-3';
+                    iconBox.className = 'w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-xl shrink-0 transition-transform group-hover:scale-110';
+                }
+            });
+        }
+
+        function renderProgressHeader(current) {
+            const percent = Math.round(((state.currentIndex + 1) / state.deck.length) * 100);
+            const isMastered = state.masteredIds.includes(current.id);
+
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4 px-1">
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1 rounded-full bg-navy-800 text-sky-200 text-xs font-bold border border-sky-400/30">
+                            ${current.unitName}
+                        </span>
+                        <span class="text-xs sm:text-sm font-bold text-navy-200">
+                            Từ <span class="text-white">${state.currentIndex + 1}</span> / ${state.deck.length}
+                        </span>
+                    </div>
+
+                    <button onclick="toggleMastered('${current.id}')"
+                        class="px-3 py-1 rounded-full text-xs font-extrabold border transition-all flex items-center gap-1.5 ${
+                            isMastered
+                            ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40'
+                            : 'bg-white/10 hover:bg-white/20 text-navy-200 border-white/20'
+                        }">
+                        <span>${isMastered ? '✅ Đã thuộc từ này' : '☆ Đánh dấu đã thuộc'}</span>
+                    </button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full h-2.5 bg-navy-950/70 rounded-full overflow-hidden mb-5 border border-white/10">
+                    <div class="h-full bg-gradient-to-r from-sky-400 via-blue-400 to-amber-300 rounded-full transition-all duration-300" style="width: ${percent}%"></div>
+                </div>
+            `;
+        }
+
+        function renderStage() {
+            const stage = document.getElementById('learning-stage');
+
+            if (state.deck.length === 0) {
+                stage.innerHTML = `
+                    <div class="glass-panel rounded-3xl p-8 text-center my-auto">
+                        <div class="text-5xl mb-3">🎈</div>
+                        <h3 class="font-display font-bold text-xl text-white mb-2">Không có từ vựng nào trong mục này</h3>
+                        <p class="text-navy-200 text-sm mb-5">Bé hãy chọn một Unit khác để tiếp tục luyện tập nhé!</p>
+                        <button onclick="selectUnit(1)" class="px-6 py-3 rounded-2xl bg-amber-400 text-navy-950 font-display font-extrabold">
+                            Quay lại Unit 1
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            const current = state.deck[state.currentIndex];
+            let contentHtml = renderProgressHeader(current);
+
+            if (state.mode === 'flashcard') {
+                contentHtml += renderFlashcardMode(current);
+            } else if (state.mode === 'scramble') {
+                contentHtml += renderScrambleMode(current);
+            } else if (state.mode === 'dictation') {
+                contentHtml += renderDictationMode(current);
+            } else if (state.mode === 'context') {
+                contentHtml += renderContextMode(current);
+            }
+
+            stage.innerHTML = contentHtml;
+
+            // Focus input automatically in dictation mode
+            if (state.mode === 'dictation' && !state.dictationChecked) {
+                const inp = document.getElementById('dictation-input');
+                if (inp) inp.focus();
+            }
+        }
+
+        /**
+         * MODE 1: SMART FLASHCARD & DEEP UNDERSTANDING
+         */
+        function renderFlashcardMode(item) {
+            return `
+                <div class="glass-card-light rounded-3xl p-5 sm:p-8 flex flex-col items-center text-center animate-pop">
+                    <!-- Emoji & Audio Controls -->
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-br from-navy-50 to-blue-100 border-2 border-navy-200 flex items-center justify-center text-5xl sm:text-6xl shadow-inner mb-4">
+                        ${item.emoji}
+                    </div>
+
+                    <!-- English Word -->
+                    <h2 class="font-display font-black text-4xl sm:text-5xl text-navy-900 tracking-wide mb-1">
+                        ${item.word}
+                    </h2>
+
+                    <!-- IPA Pronunciation -->
+                    <div class="text-base sm:text-lg font-mono font-semibold text-navy-600 mb-4">
+                        ${item.ipa}
+                    </div>
+
+                    <!-- Speaker Buttons -->
+                    <div class="flex flex-wrap items-center justify-center gap-2.5 mb-6">
+                        <button onclick="speakText('${item.word.replace(/'/g, "\\'")}', 0.95)"
+                            class="px-5 py-2.5 rounded-2xl bg-navy-700 hover:bg-navy-800 text-white font-display font-bold text-sm flex items-center gap-2 shadow-md shadow-navy-700/25 transition-all active:scale-95">
+                            <span class="text-lg">🔊</span> Nghe phát âm
+                        </button>
+                        <button onclick="speakText('${item.word.replace(/'/g, "\\'")}', 0.6)"
+                            class="px-4 py-2.5 rounded-2xl bg-navy-100 hover:bg-navy-200 text-navy-800 font-display font-bold text-sm flex items-center gap-1.5 transition-all active:scale-95">
+                            <span>🐢</span> Nghe chậm
+                        </button>
+                    </div>
+
+                    <!-- Vietnamese Meaning -->
+                    <div class="w-full max-w-lg bg-amber-50 border-2 border-amber-200 rounded-2xl p-3.5 mb-5">
+                        <div class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-0.5">Nghĩa tiếng Việt</div>
+                        <div class="font-display font-black text-2xl sm:text-3xl text-navy-900">${item.meaning}</div>
+                    </div>
+
+                    <!-- Context Example Box -->
+                    <div class="w-full max-w-lg bg-navy-50/90 border border-navy-200 rounded-2xl p-4 text-left">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-xs font-extrabold uppercase tracking-wider text-navy-600 flex items-center gap-1">
+                                <span>💬</span> Ví dụ trong sách giáo khoa
+                            </span>
+                            <button onclick="speakText('${item.example.replace(/'/g, "\\'")}', 0.92)"
+                                class="px-3 py-1 rounded-xl bg-navy-700 hover:bg-navy-800 text-white text-xs font-bold flex items-center gap-1 transition-all active:scale-95">
+                                <span>🔊</span> Đọc câu
+                            </button>
+                        </div>
+                        <p class="font-display font-bold text-base sm:text-lg text-navy-900 leading-snug">
+                            "${highlightWordInSentence(item.example, item.word)}"
+                        </p>
+                        <p class="text-sm text-slate-600 mt-1 italic">
+                            → ${item.exampleVi}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex items-center justify-between gap-3 mt-5">
+                    <button onclick="prevCard()" ${state.currentIndex === 0 ? 'disabled' : ''}
+                        class="px-5 py-3.5 rounded-2xl font-display font-extrabold text-sm sm:text-base bg-white/10 hover:bg-white/20 disabled:opacity-35 disabled:pointer-events-none text-white border border-white/20 transition-all">
+                        ← Từ trước
+                    </button>
+
+                    <button onclick="nextCard()"
+                        class="flex-1 sm:flex-initial sm:px-10 py-3.5 rounded-2xl font-display font-extrabold text-sm sm:text-base bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-navy-950 shadow-lg shadow-amber-500/30 transition-all active:scale-95">
+                        ${state.currentIndex === state.deck.length - 1 ? 'Hoàn thành vòng học 🎉' : 'Từ tiếp theo →'}
+                    </button>
+                </div>
+            `;
+        }
+
+        /**
+         * MODE 2: SCRAMBLE SPELLING (TAP LETTERS TO BUILD THE WORD)
+         */
+        function renderScrambleMode(item) {
+            const targetLen = item.word.length;
+            const builtWord = state.scrambleSelected.map(s => s.char).join('');
+
+            // Build answer slots
+            let slotsHtml = '';
+            for (let i = 0; i < targetLen; i++) {
+                const chosen = state.scrambleSelected[i];
+                if (chosen) {
+                    const displayChar = chosen.char === ' ' ? '␣' : chosen.char;
+                    let slotColor = 'bg-navy-700 text-white border-navy-800 shadow-md';
+                    if (state.scrambleStatus === 'correct') slotColor = 'bg-emerald-500 text-white border-emerald-600 shadow-emerald-500/30';
+                    if (state.scrambleStatus === 'wrong') slotColor = 'bg-rose-500 text-white border-rose-600 animate-shake';
+
+                    slotsHtml += `
+                        <button onclick="removeScrambleLetter(${i})" ${state.scrambleStatus === 'correct' ? 'disabled' : ''}
+                            class="letter-tile w-10 h-12 sm:w-12 sm:h-14 rounded-xl border-b-4 font-display font-black text-xl sm:text-2xl flex items-center justify-center ${slotColor}">
+                            ${displayChar}
+                        </button>
+                    `;
+                } else {
+                    // Hint space or dot automatically if user wants, or keep blank tile
+                    const isSpace = item.word[i] === ' ';
+                    slotsHtml += `
+                        <div class="w-10 h-12 sm:w-12 sm:h-14 rounded-xl border-2 border-dashed ${isSpace ? 'border-amber-400 bg-amber-50/60' : 'border-navy-300 bg-navy-50'} flex items-center justify-center text-xs text-navy-400 font-bold">
+                            ${isSpace ? 'cách' : ''}
+                        </div>
+                    `;
+                }
+            }
+
+            // Build letter pool tiles
+            const poolHtml = state.scramblePool.map((tile, idx) => {
+                const displayChar = tile.char === ' ' ? '␣' : tile.char;
+                if (tile.used) {
+                    return `<div class="w-11 h-12 sm:w-13 sm:h-14 rounded-xl bg-slate-200/70 border border-slate-300/60"></div>`;
+                }
+                return `
+                    <button onclick="pickScrambleLetter(${idx})" ${state.scrambleStatus === 'correct' ? 'disabled' : ''}
+                        class="letter-tile w-11 h-12 sm:w-13 sm:h-14 rounded-xl bg-white hover:bg-amber-50 text-navy-900 border-2 border-navy-200 border-b-4 border-b-navy-400 font-display font-black text-xl sm:text-2xl shadow-sm flex items-center justify-center">
+                        ${displayChar}
+                    </button>
+                `;
+            }).join('');
+
+            return `
+                <div class="glass-card-light rounded-3xl p-5 sm:p-8 flex flex-col items-center text-center animate-pop">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-navy-500 mb-3">
+                        🧩 Bấm chọn từng chữ cái để ghép đúng từ tiếng Anh
+                    </div>
+
+                    <!-- Prompt: Emoji + Meaning + Speaker -->
+                    <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 bg-navy-50 border border-navy-200 rounded-2xl px-5 py-3.5 mb-6">
+                        <span class="text-4xl sm:text-5xl">${item.emoji}</span>
+                        <div class="text-center sm:text-left">
+                            <div class="font-display font-black text-2xl sm:text-3xl text-navy-900">${item.meaning}</div>
+                            <div class="text-xs font-mono text-navy-500">${item.ipa} • (${item.word.length} ký tự)</div>
+                        </div>
+                        <button onclick="speakText('${item.word.replace(/'/g, "\\'")}', 0.9)"
+                            class="p-3 rounded-2xl bg-navy-700 hover:bg-navy-800 text-white shadow-md transition-all active:scale-95" title="Nghe phát âm">
+                            🔊
+                        </button>
+                    </div>
+
+                    <!-- Answer Slots -->
+                    <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-6 min-h-[3.5rem]">
+                        ${slotsHtml}
+                    </div>
+
+                    <!-- Status Feedback -->
+                    ${state.scrambleStatus === 'correct' ? `
+                        <div class="w-full max-w-md bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-3.5 mb-5 animate-pop">
+                            <div class="font-display font-black text-emerald-700 text-lg">🎉 Chính xác! "${item.word}"</div>
+                            <div class="text-xs sm:text-sm text-emerald-800 mt-1">${item.example} (${item.exampleVi})</div>
+                        </div>
+                    ` : state.scrambleStatus === 'wrong' ? `
+                        <div class="w-full max-w-md bg-rose-50 border-2 border-rose-300 rounded-2xl p-3 mb-5 text-rose-700 font-bold text-sm">
+                            ❌ Chưa đúng rồi! Bé hãy bấm vào chữ cái ở trên để sửa lại nhé.
+                        </div>
+                    ` : ''}
+
+                    <!-- Scrambled Letter Tiles Pool -->
+                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 p-4 bg-navy-100/70 rounded-2xl border border-navy-200 w-full max-w-xl mb-5">
+                        ${poolHtml}
+                    </div>
+
+                    <!-- Helper & Next Actions -->
+                    <div class="flex flex-wrap items-center justify-center gap-3 w-full">
+                        ${state.scrambleStatus !== 'correct' ? `
+                            <button onclick="hintScrambleLetter()"
+                                class="px-4 py-2.5 rounded-2xl bg-amber-100 hover:bg-amber-200 text-amber-900 font-display font-bold text-sm border border-amber-300 transition-all active:scale-95">
+                                💡 Gợi ý 1 chữ
+                            </button>
+                            <button onclick="clearScramble()"
+                                class="px-4 py-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-display font-bold text-sm transition-all active:scale-95">
+                                ↺ Xếp lại
+                            </button>
+                        ` : `
+                            <button onclick="nextCard()"
+                                class="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-display font-extrabold text-base shadow-lg shadow-emerald-500/30 transition-all active:scale-95">
+                                Câu tiếp theo →
+                            </button>
+                        `}
+                    </div>
+                </div>
+            `;
+        }
+
+        function pickScrambleLetter(poolIdx) {
+            if (state.scrambleStatus === 'correct') return;
+            const tile = state.scramblePool[poolIdx];
+            if (!tile || tile.used) return;
+
+            playSound('click');
+            tile.used = true;
+            state.scrambleSelected.push({ char: tile.char, poolIdx });
+            state.scrambleStatus = null;
+
+            const current = state.deck[state.currentIndex];
+            if (state.scrambleSelected.length === current.word.length) {
+                const attempt = state.scrambleSelected.map(s => s.char).join('');
+                if (attempt === current.word) {
+                    state.scrambleStatus = 'correct';
+                    recordAnswer(current.id, true);
+                    speakText(current.word);
+                } else {
+                    state.scrambleStatus = 'wrong';
+                    recordAnswer(current.id, false);
+                }
+            }
+            renderStage();
+        }
+
+        function removeScrambleLetter(slotIdx) {
+            if (state.scrambleStatus === 'correct') return;
+            playSound('click');
+            const removed = state.scrambleSelected.splice(slotIdx, 1)[0];
+            if (removed) {
+                state.scramblePool[removed.poolIdx].used = false;
+            }
+            state.scrambleStatus = null;
+            renderStage();
+        }
+
+        function clearScramble() {
+            playSound('click');
+            state.scrambleSelected = [];
+            state.scramblePool.forEach(t => t.used = false);
+            state.scrambleStatus = null;
+            renderStage();
+        }
+
+        function hintScrambleLetter() {
+            if (state.scrambleStatus === 'correct') return;
+            const current = state.deck[state.currentIndex];
+            // Reset wrong prefix if any
+            let validPrefixLen = 0;
+            for (let i = 0; i < state.scrambleSelected.length; i++) {
+                if (state.scrambleSelected[i].char === current.word[i]) {
+                    validPrefixLen++;
+                } else {
+                    break;
+                }
+            }
+            // Return mismatched tiles after validPrefixLen back to pool
+            while (state.scrambleSelected.length > validPrefixLen) {
+                const rem = state.scrambleSelected.pop();
+                state.scramblePool[rem.poolIdx].used = false;
+            }
+
+            if (validPrefixLen < current.word.length) {
+                const neededChar = current.word[validPrefixLen];
+                const poolIdx = state.scramblePool.findIndex(t => !t.used && t.char === neededChar);
+                if (poolIdx !== -1) {
+                    pickScrambleLetter(poolIdx);
+                }
+            }
+        }
+
+        /**
+         * MODE 3: LISTEN & TYPE DICTATION (WITH CHARACTER-BY-CHARACTER SPELLING DIFF)
+         */
+        function renderDictationMode(item) {
+            const maskedExample = maskWordInSentence(item.example, item.word);
+
+            // Generate character-level visual comparison when checked
+            let comparisonHtml = '';
+            if (state.dictationChecked) {
+                const target = item.word;
+                const typed = state.dictationInput.trim();
+                const maxLen = Math.max(target.length, typed.length);
+
+                let targetCharsHtml = '';
+                let typedCharsHtml = '';
+
+                for (let i = 0; i < maxLen; i++) {
+                    const tChar = target[i] || '';
+                    const uChar = typed[i] || '';
+                    const isMatch = tChar === uChar && tChar !== '';
+
+                    if (tChar) {
+                        targetCharsHtml += `<span class="inline-flex items-center justify-center w-7 h-8 sm:w-8 sm:h-9 rounded-lg font-mono font-black text-base sm:text-lg bg-emerald-100 text-emerald-800 border border-emerald-300 mx-0.5">${tChar === ' ' ? '␣' : tChar}</span>`;
+                    }
+                    if (uChar) {
+                        typedCharsHtml += `<span class="inline-flex items-center justify-center w-7 h-8 sm:w-8 sm:h-9 rounded-lg font-mono font-black text-base sm:text-lg mx-0.5 ${
+                            isMatch
+                            ? 'bg-emerald-500 text-white'
+                            : 'bg-rose-500 text-white line-through'
+                        }">${uChar === ' ' ? '␣' : uChar}</span>`;
+                    } else if (tChar) {
+                        typedCharsHtml += `<span class="inline-flex items-center justify-center w-7 h-8 sm:w-8 sm:h-9 rounded-lg font-mono font-bold text-sm mx-0.5 bg-rose-100 text-rose-500 border border-dashed border-rose-400">?</span>`;
+                    }
+                }
+
+                comparisonHtml = `
+                    <div class="w-full max-w-lg rounded-2xl p-4 mb-5 border-2 ${state.dictationCorrect ? 'bg-emerald-50 border-emerald-300' : 'bg-rose-50 border-rose-300'} animate-pop">
+                        <div class="font-display font-black text-lg mb-2 ${state.dictationCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+                            ${state.dictationCorrect ? '🌟 Viết chính tả hoàn hảo!' : '🧐 Cùng soi lỗi chính tả nhé:'}
+                        </div>
+                        <div class="space-y-2 text-left">
+                            <div>
+                                <span class="text-xs font-bold text-slate-500 block mb-1">Bé đã gõ:</span>
+                                <div class="flex flex-wrap">${typedCharsHtml || '<span class="text-sm text-rose-500 italic">(Chưa nhập gì)</span>'}</div>
+                            </div>
+                            ${!state.dictationCorrect ? `
+                                <div>
+                                    <span class="text-xs font-bold text-emerald-700 block mb-1">Đáp án chuẩn:</span>
+                                    <div class="flex flex-wrap">${targetCharsHtml}</div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="glass-card-light rounded-3xl p-5 sm:p-8 flex flex-col items-center text-center animate-pop">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-navy-500 mb-3">
+                        🎧 Nghe phát âm và gõ lại chính xác từ tiếng Anh
+                    </div>
+
+                    <!-- Big Audio Buttons -->
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <button onclick="speakText('${item.word.replace(/'/g, "\\'")}', 0.95)"
+                            class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-br from-navy-700 to-blue-600 hover:from-navy-800 hover:to-blue-700 text-white shadow-xl shadow-navy-700/30 flex flex-col items-center justify-center gap-1 transition-transform active:scale-95">
+                            <span class="text-3xl sm:text-4xl">🔊</span>
+                            <span class="text-[11px] font-bold">Nghe từ</span>
+                        </button>
+                        <button onclick="speakText('${item.word.replace(/'/g, "\\'")}', 0.55)"
+                            class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-navy-100 hover:bg-navy-200 text-navy-800 border border-navy-200 flex flex-col items-center justify-center gap-1 transition-transform active:scale-95">
+                            <span class="text-2xl">🐢</span>
+                            <span class="text-[11px] font-bold">Nghe chậm</span>
+                        </button>
+                    </div>
+
+                    <!-- Clue Card -->
+                    <div class="w-full max-w-lg bg-navy-50 border border-navy-200 rounded-2xl p-3.5 mb-5">
+                        <div class="flex items-center justify-center gap-2 mb-1">
+                            <span class="text-2xl">${item.emoji}</span>
+                            <span class="font-display font-extrabold text-xl text-navy-900">${item.meaning}</span>
+                        </div>
+                        <p class="text-sm text-navy-700 font-medium">"${maskedExample}"</p>
+                        <p class="text-xs text-slate-500 italic mt-0.5">(${item.exampleVi})</p>
+                    </div>
+
+                    <!-- Input Form -->
+                    <form onsubmit="submitDictation(event)" class="w-full max-w-md mb-4">
+                        <input
+                            id="dictation-input"
+                            type="text"
+                            autocomplete="off"
+                            autocorrect="off"
+                            autocapitalize="off"
+                            spellcheck="false"
+                            placeholder="Gõ từ tiếng Anh vào đây..."
+                            value="${escapeHtml(state.dictationInput)}"
+                            oninput="state.dictationInput = this.value"
+                            ${state.dictationChecked ? 'disabled' : ''}
+                            class="w-full px-5 py-4 rounded-2xl border-2 border-navy-300 focus:border-navy-700 focus:outline-none text-center font-display font-black text-2xl text-navy-900 bg-white shadow-inner"
+                        />
+
+                        ${!state.dictationChecked ? `
+                            <button type="submit"
+                                class="mt-4 w-full py-3.5 rounded-2xl bg-gradient-to-r from-navy-700 to-blue-600 hover:from-navy-800 hover:to-blue-700 text-white font-display font-extrabold text-base shadow-lg shadow-navy-700/30 transition-all active:scale-95">
+                                Kiểm tra chính tả ✓
+                            </button>
+                        ` : ''}
+                    </form>
+
+                    ${comparisonHtml}
+
+                    ${state.dictationChecked ? `
+                        <div class="flex items-center justify-center gap-3">
+                            ${!state.dictationCorrect ? `
+                                <button onclick="retryDictation()"
+                                    class="px-5 py-3 rounded-2xl bg-amber-100 hover:bg-amber-200 text-amber-900 font-display font-extrabold text-sm border border-amber-300 transition-all">
+                                    ↺ Gõ lại cho đúng
+                                </button>
+                            ` : ''}
+                            <button onclick="nextCard()"
+                                class="px-8 py-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-display font-extrabold text-base shadow-lg shadow-emerald-500/30 transition-all active:scale-95">
+                                Câu tiếp theo →
+                            </button>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function submitDictation(e) {
+            e.preventDefault();
+            if (state.dictationChecked) return;
+            const current = state.deck[state.currentIndex];
+            const cleanedInput = state.dictationInput.trim().replace(/\s+/g, ' ');
+            state.dictationInput = cleanedInput;
+            state.dictationChecked = true;
+
+            // Compare exact spelling (case-insensitive except Mr./Ms. accepted in any case)
+            state.dictationCorrect = cleanedInput.toLowerCase() === current.word.toLowerCase();
+            recordAnswer(current.id, state.dictationCorrect);
+            speakText(current.word);
+            renderStage();
+        }
+
+        function retryDictation() {
+            playSound('click');
+            state.dictationInput = '';
+            state.dictationChecked = false;
+            state.dictationCorrect = false;
+            renderStage();
+        }
+
+        /**
+         * MODE 4: CONTEXT QUIZ (UNDERSTANDING WORDS IN REAL SENTENCES)
+         */
+        function renderContextMode(item) {
+            const blankedSentence = maskWordInSentence(item.example, item.word);
+
+            const optionsHtml = state.contextOptions.map(opt => {
+                let btnClass = 'bg-white hover:bg-navy-50 text-navy-900 border-2 border-navy-200 hover:border-navy-500';
+                let badge = '';
+
+                if (state.contextAnswered) {
+                    if (opt.word.toLowerCase() === item.word.toLowerCase()) {
+                        btnClass = 'bg-emerald-500 text-white border-2 border-emerald-600 shadow-lg shadow-emerald-500/25';
+                        badge = '✅';
+                    } else if (state.contextSelected && opt.id === state.contextSelected.id) {
+                        btnClass = 'bg-rose-500 text-white border-2 border-rose-600 animate-shake';
+                        badge = '❌';
+                    } else {
+                        btnClass = 'bg-slate-100 text-slate-400 border-2 border-slate-200 opacity-60';
+                    }
+                }
+
+                return `
+                    <button onclick="selectContextOption('${opt.id}')" ${state.contextAnswered ? 'disabled' : ''}
+                        class="p-4 rounded-2xl font-display font-extrabold text-lg sm:text-xl transition-all flex items-center justify-between gap-2 ${btnClass}">
+                        <span class="flex items-center gap-2.5">
+                            <span class="text-2xl">${opt.emoji}</span>
+                            <span>${opt.word}</span>
+                        </span>
+                        <span>${badge}</span>
+                    </button>
+                `;
+            }).join('');
+
+            return `
+                <div class="glass-card-light rounded-3xl p-5 sm:p-8 flex flex-col items-center text-center animate-pop">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-navy-500 mb-3">
+                        🎯 Chọn từ thích hợp nhất để hoàn thành câu sau
+                    </div>
+
+                    <!-- Sentence Card -->
+                    <div class="w-full max-w-xl bg-gradient-to-br from-navy-50 to-blue-50 border-2 border-navy-200 rounded-2xl p-5 mb-6">
+                        <div class="text-4xl mb-2">${item.emoji}</div>
+                        <p class="font-display font-black text-xl sm:text-2xl text-navy-900 leading-relaxed mb-2">
+                            "${state.contextAnswered ? highlightWordInSentence(item.example, item.word) : blankedSentence}"
+                        </p>
+                        <p class="text-sm sm:text-base font-medium text-navy-700">
+                            Dịch nghĩa: <span class="italic">${item.exampleVi}</span>
+                        </p>
+                    </div>
+
+                    <!-- 4 Multiple Choice Options -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-xl mb-5">
+                        ${optionsHtml}
+                    </div>
+
+                    <!-- Explanation & Next -->
+                    ${state.contextAnswered ? `
+                        <div class="w-full max-w-xl bg-navy-900 text-white rounded-2xl p-4 mb-5 flex flex-col sm:flex-row items-center justify-between gap-3 animate-pop">
+                            <div class="text-left">
+                                <div class="text-xs text-sky-300 font-bold uppercase">Giải thích từ vựng</div>
+                                <div class="font-display font-extrabold text-base">
+                                    <span class="text-amber-300">${item.word}</span> (${item.ipa}): ${item.meaning}
+                                </div>
+                            </div>
+                            <button onclick="speakText('${item.example.replace(/'/g, "\\'")}', 0.92)"
+                                class="px-4 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold flex items-center gap-1.5 shrink-0">
+                                <span>🔊</span> Nghe cả câu
+                            </button>
+                        </div>
+
+                        <button onclick="nextCard()"
+                            class="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-display font-extrabold text-base shadow-lg shadow-emerald-500/30 transition-all active:scale-95">
+                            Câu tiếp theo →
+                        </button>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function selectContextOption(optId) {
+            if (state.contextAnswered) return;
+            const current = state.deck[state.currentIndex];
+            const chosen = state.contextOptions.find(o => o.id === optId);
+            if (!chosen) return;
+
+            state.contextSelected = chosen;
+            state.contextAnswered = true;
+            const isCorrect = chosen.word.toLowerCase() === current.word.toLowerCase();
+            recordAnswer(current.id, isCorrect);
+            speakText(current.example);
+            renderStage();
+        }
+
+        /**
+         * =========================================================================
+         * 7. TEXT HELPER UTILITIES
+         * =========================================================================
+         */
+        function escapeRegExp(str) {
+            return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function highlightWordInSentence(sentence, word) {
+            const escaped = escapeRegExp(word);
+            // Match word or plural form (e.g., ear -> ears, computer room -> computer rooms)
+            const regex = new RegExp(`(${escaped}s?)`, 'gi');
+            return sentence.replace(regex, '<span class="text-blue-600 underline decoration-amber-400 decoration-4 underline-offset-4">$1</span>');
+        }
+
+        function maskWordInSentence(sentence, word) {
+            const escaped = escapeRegExp(word);
+            const regex = new RegExp(`(${escaped}s?)`, 'gi');
+            return sentence.replace(regex, '<span class="inline-block px-3 py-0.5 mx-1 bg-amber-200/80 text-navy-900 rounded-lg border-b-2 border-navy-600 font-mono">______</span>');
+        }
+
+        /**
+         * =========================================================================
+         * 8. INITIALIZATION
+         * =========================================================================
+         */
+        function renderAll() {
+            updateHeaderStats();
+            renderUnitSelector();
+            renderModeTabs();
+            renderStage();
+        }
+
+        window.onload = function () {
+            loadProgress();
+            buildDeck(false);
+            renderAll();
+        };
+    </script>
+</body>
+</html>
